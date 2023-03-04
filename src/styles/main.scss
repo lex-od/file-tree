@@ -1,0 +1,33 @@
+@import "~modern-normalize/modern-normalize.css";
+
+// 📌 Reset
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+// 📌 Initial
+
+body {
+  font-family: sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
