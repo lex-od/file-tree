@@ -14,10 +14,10 @@ export interface IGetFileTreeFile {
   type: string;
 }
 
-export type TGetFileTreeFileList = IGetFileTreeFile[];
-
-export type TGetFileTreeFolderList = Record<string, TGetFileTreeFileList>;
+export type TGetFileTreeFolderList = Record<string, IGetFileTreeFile[]>;
 
 export interface IGetFileTreeResponse {
-  data: TGetFileTreeFolderList;
+  data: {
+    files: TGetFileTreeFolderList;
+  };
 }
