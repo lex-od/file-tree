@@ -1,6 +1,6 @@
 .fileHeader {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
 }
 
 .cell {
@@ -11,4 +11,10 @@
     font-weight: 600;
     color: #5e5e5e;
   }
+}
+
+.firstCell {
+  @extend .cell;
+
+  padding-left: 35px;
 }

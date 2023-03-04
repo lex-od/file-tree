@@ -12,16 +12,16 @@ interface IFolderItems {
 
 export const FolderItem: FC<IFolderItems> = ({ folderName, files }) => {
   return (
-    <li key={folderName}>
-      <b>{folderName}</b>
+    <li>
+      <b className={css.folderName}>{folderName}</b>
 
-      <ul className={css.fileList}>
+      <ul>
         {!files.length && <li className={css.noItems}>Folder is empty</li>}
 
         {!!files.length && <FileHeader />}
 
         {files.map((file) => (
-          <FileItem file={file} />
+          <FileItem key={file.name} file={file} />
         ))}
       </ul>
     </li>

@@ -10,7 +10,7 @@ interface IFileItem {
 export const FileItem: FC<IFileItem> = ({ file }) => {
   return (
     <li className={css.fileItem}>
-      <div className={css.cell}>
+      <div className={css.firstCell}>
         <p>{file.name}</p>
       </div>
 

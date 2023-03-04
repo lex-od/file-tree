@@ -50,7 +50,11 @@ export const Home = () => {
             )}
 
             {foldersEntries?.map(([folderName, files]) => (
-              <FolderItem folderName={folderName} files={files} />
+              <FolderItem
+                key={folderName}
+                folderName={folderName}
+                files={files}
+              />
             ))}
           </>
         )}

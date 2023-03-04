@@ -3,7 +3,7 @@ import css from "./FileHeader.module.scss";
 export const FileHeader = () => {
   return (
     <li className={css.fileHeader}>
-      <div className={css.cell}>
+      <div className={css.firstCell}>
         <p>Name</p>
       </div>
 
