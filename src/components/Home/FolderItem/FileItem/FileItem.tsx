@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { IGetFileTreeFile } from "services/api/types";
+import { toTimezone } from "utils";
 import css from "./FileItem.module.scss";
 
 interface IFileItem {
@@ -15,15 +16,15 @@ export const FileItem: FC<IFileItem> = ({ file }) => {
       </div>
 
       <div className={css.cell}>
-        <p>{file.size}</p>
+        <p>{Math.ceil(file.size / 1024)} KB</p>
       </div>
 
       <div className={css.cell}>
-        <p>{file.mtime}</p>
+        <p>{toTimezone(file.mtime * 1000)}</p>
       </div>
 
       <div className={css.cell}>
-        <p>{file.atime}</p>
+        <p>{toTimezone(file.atime * 1000)}</p>
       </div>
     </li>
   );
