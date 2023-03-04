@@ -1,0 +1,14 @@
+.fileHeader {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+}
+
+.cell {
+  padding: 10px;
+
+  > p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5e5e5e;
+  }
+}

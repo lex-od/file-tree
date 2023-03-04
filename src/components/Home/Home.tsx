@@ -4,6 +4,7 @@ import { api } from "services";
 import { TGetFileTreeFolderList } from "services/api/types";
 import { showError } from "utils";
 import css from "./Home.module.scss";
+import { FolderItem } from "./FolderItem/FolderItem";
 
 interface IFolderParam {
   name: string;
@@ -39,23 +40,21 @@ export const Home = () => {
     <div className={css.home}>
       <h1 className={css.title}>File tree</h1>
 
-      {!!foldersEntries?.length && (
-        <ul>
-          {foldersEntries.map(([folderName, files]) => (
-            <li key={folderName}>
-              <b>{folderName}</b>
+      <ul>
+        {loading && <li className={css.loader}>Loading...</li>}
 
-              {!!files.length && (
-                <ul className={css.fileList}>
-                  {files.map((file) => (
-                    <li>{file.name}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+        {!loading && (
+          <>
+            {!foldersEntries?.length && (
+              <li className={css.noItems}>No folders found</li>
+            )}
+
+            {foldersEntries?.map(([folderName, files]) => (
+              <FolderItem folderName={folderName} files={files} />
+            ))}
+          </>
+        )}
+      </ul>
     </div>
   );
 };
