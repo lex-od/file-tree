@@ -1,22 +1,31 @@
 import css from "./FileHeader.module.scss";
+import { SortButton } from "./SortButton/SortButton";
 
 export const FileHeader = () => {
   return (
     <li className={css.fileHeader}>
       <div className={css.firstCell}>
-        <p>Name</p>
+        <SortButton isActive={true} isAsc={true}>
+          Name
+        </SortButton>
       </div>
 
       <div className={css.cell}>
-        <p>Size</p>
+        <SortButton isActive={false} isAsc={true}>
+          Size
+        </SortButton>
       </div>
 
       <div className={css.cell}>
-        <p>Created</p>
+        <SortButton isActive={false} isAsc={true}>
+          Created
+        </SortButton>
       </div>
 
       <div className={css.cell}>
-        <p>Updated</p>
+        <SortButton isActive={false} isAsc={true}>
+          Updated
+        </SortButton>
       </div>
     </li>
   );
