@@ -6,16 +6,26 @@ import { showError } from "utils";
 import css from "./Home.module.scss";
 import { FolderItem } from "./FolderItem/FolderItem";
 
-interface IFolderParam {
+export type TSortField = "name" | "size" | "mtime" | "atime";
+
+export interface IFolderParams {
   name: string;
   isExpanded: boolean;
-  sortField: "name" | "size" | "mtime" | "atime";
+  sortField: TSortField;
   sortIsAsc: boolean;
 }
 
+export type TSetFolderParams = (folderParams: IFolderParams) => void;
+
+export const defaultFolderParams = {
+  isExpanded: true,
+  sortField: "name" as TSortField,
+  sortIsAsc: true,
+};
+
 export const Home = () => {
   const [folders, setFolders] = useState<TGetFileTreeFolderList | null>(null);
-  const [folderParams, setFolderParams] = useState<IFolderParam[]>([]);
+  const [foldersParams, setFoldersParams] = useState<IFolderParams[]>([]);
   const [loading, setLoading] = useState(true);
 
   const foldersEntries = folders && Object.entries(folders);
@@ -28,13 +38,23 @@ export const Home = () => {
       })
       .catch((error) => {
         showError(error);
-        setFolders(null);
-        setFolderParams([]);
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
+
+  const getFolderParams = (folderName: string) => {
+    return foldersParams.find(({ name }) => name === folderName);
+  };
+
+  const setFolderParams: TSetFolderParams = (folderParams) => {
+    setFoldersParams((params) => {
+      const newParams = params.filter(({ name }) => name !== folderParams.name);
+      newParams.push(folderParams);
+      return newParams;
+    });
+  };
 
   return (
     <div className={css.home}>
@@ -54,6 +74,8 @@ export const Home = () => {
                 key={folderName}
                 folderName={folderName}
                 files={files}
+                folderParams={getFolderParams(folderName)}
+                setFolderParams={setFolderParams}
               />
             ))}
           </>
