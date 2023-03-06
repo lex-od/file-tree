@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { api } from "services";
 import { TGetFileTreeFolderList } from "services/api/types";
-import { showError } from "utils";
+import { getCookie, setCookie, showError } from "utils";
 import css from "./Home.module.scss";
 import { FolderItem } from "./FolderItem/FolderItem";
 
@@ -25,8 +25,9 @@ export const defaultFolderParams = {
 
 export const Home = () => {
   const [folders, setFolders] = useState<TGetFileTreeFolderList | null>(null);
-  const [foldersParams, setFoldersParams] = useState<IFolderParams[]>([]);
   const [loading, setLoading] = useState(true);
+  const [foldersParams, setFoldersParams] = useState<IFolderParams[]>([]);
+  const [isRehydrated, setIsRehydrated] = useState(false);
 
   const foldersEntries = folders && Object.entries(folders);
 
@@ -43,6 +44,21 @@ export const Home = () => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (!isRehydrated) {
+      const paramsValue = getCookie("foldersParams");
+      try {
+        if (paramsValue) {
+          setFoldersParams(JSON.parse(paramsValue));
+        }
+      } finally {
+        setIsRehydrated(true);
+        return;
+      }
+    }
+    setCookie("foldersParams", JSON.stringify(foldersParams));
+  }, [foldersParams, isRehydrated]);
 
   const getFolderParams = (folderName: string) => {
     return foldersParams.find(({ name }) => name === folderName);
