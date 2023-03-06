@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { IGetFileTreeFile } from "services/api/types";
-import { toTimezone } from "utils";
+import { getFileExt, toTimezone } from "utils";
 import css from "./FileItem.module.scss";
+import { FileIcon } from "components/FileIcon/FileIcon";
 
 interface IFileItem {
   file: IGetFileTreeFile;
@@ -11,7 +12,8 @@ interface IFileItem {
 export const FileItem: FC<IFileItem> = ({ file }) => {
   return (
     <li className={css.fileItem}>
-      <div className={css.firstCell}>
+      <div className={css.nameCell}>
+        <FileIcon fileExt={getFileExt(file.name)} size="lg" />
         <p>{file.name}</p>
       </div>
 

@@ -50,7 +50,9 @@ export const Home = () => {
 
   const setFolderParams: TSetFolderParams = (folderParams) => {
     setFoldersParams((params) => {
-      const newParams = params.filter(({ name }) => name !== folderParams.name);
+      const newParams = params.filter(({ name }) => {
+        return name !== folderParams.name;
+      });
       newParams.push(folderParams);
       return newParams;
     });
