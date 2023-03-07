@@ -1,25 +1,54 @@
 .fileItem {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  }
 }
 
 .cell {
-  padding: 10px;
+  padding: 5px;
 
-  > p {
-    font-size: 14px;
+  @media screen and (min-width: 1200px) {
+    padding: 10px;
   }
 }
 
 .nameCell {
   @extend .cell;
 
-  padding-left: 40px;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 5px;
 
   > svg {
     color: #00a5ce;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: auto;
+    padding-left: 40px;
+  }
+}
+
+.nameText {
+  font-size: 14px;
+  font-weight: 700;
+
+  @media screen and (min-width: 1200px) {
+    font-weight: 400;
+  }
+}
+
+.infoText {
+  font-size: 12px;
+}
+
+.mobileLabel {
+  @media screen and (min-width: 1200px) {
+    display: none;
   }
 }

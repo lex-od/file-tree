@@ -14,19 +14,25 @@ export const FileItem: FC<IFileItem> = ({ file }) => {
     <li className={css.fileItem}>
       <div className={css.nameCell}>
         <FileIcon fileExt={getFileExt(file.name)} size="lg" />
-        <p>{file.name}</p>
+        <p className={css.nameText}>{file.name}</p>
       </div>
 
       <div className={css.cell}>
-        <p>{Math.ceil(file.size / 1024)} KB</p>
+        <p className={css.infoText}>{Math.ceil(file.size / 1024)} KB</p>
       </div>
 
       <div className={css.cell}>
-        <p>{toTimezone(file.mtime * 1000)}</p>
+        <p className={css.infoText}>
+          <span className={css.mobileLabel}>Created: </span>
+          {toTimezone(file.mtime * 1000)}
+        </p>
       </div>
 
       <div className={css.cell}>
-        <p>{toTimezone(file.atime * 1000)}</p>
+        <p className={css.infoText}>
+          <span className={css.mobileLabel}>Updated: </span>
+          {toTimezone(file.atime * 1000)}
+        </p>
       </div>
     </li>
   );

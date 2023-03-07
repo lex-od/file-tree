@@ -1,5 +1,9 @@
 .folderHeader {
-  padding: 10px;
+  padding: 5px;
+
+  @media screen and (min-width: 1200px) {
+    padding: 10px;
+  }
 }
 
 .folderNameBtn {
@@ -21,7 +25,12 @@
 }
 
 .noItems {
-  padding: 10px;
-  font-size: 14px;
+  padding: 5px;
+  font-size: 12px;
   color: #5e5e5e;
+
+  @media screen and (min-width: 1200px) {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

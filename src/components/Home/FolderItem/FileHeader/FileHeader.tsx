@@ -18,7 +18,11 @@ export const FileHeader: FC<IFileHeader> = ({
 }) => {
   return (
     <li className={css.fileHeader}>
-      <div className={css.firstCell}>
+      <div className={css.sortCell}>
+        <p>Sort by:</p>
+      </div>
+
+      <div className={css.nameCell}>
         <SortButton
           isActive={sortField === "name"}
           isAsc={sortIsAsc}
